@@ -1,0 +1,22 @@
+
+body {
+  background-color: black;
+  color: wheat;
+  display: flex;
+  justify-content: center;
+  
+  
+
+}
+  
+  h2 {
+  font-size: xx-large;
+  text-align: center;
+  border: 3px solid green
+;
+}
+
+.main-section {
+  display: grid;
+  grid-template-rows: ,1fr;
+}
