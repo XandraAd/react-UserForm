@@ -1,6 +1,7 @@
+/* eslint-disable no-undef */
 import { useState } from 'react'
 import './App.css'
-import Users from './component/users'
+import Users from './component/Users'
 import UsersForm from './component/UsersForm'
 
 
@@ -11,23 +12,45 @@ function App() {
     {
       name:"Sandra",
       email:"sss@gmail.com",
-      gen:24
+      gen:24,
+      id:"5666fg66666565"
     },
     {
       name:"Bernard",
       email:"fatherb@gmail.com",
-      gen:24
+      gen:24,
+      id:"dfgr6767677gzgz"
     },
     {
       name:"Bernard",
       email:"fatherb@gmail.com",
-      gen:24
+      gen:24,
+      id:"wes456tfrt8uhz"
     }
   ]);
 
-  function handleAddUser( UsersForm) {
-    setUsers([...users,  UsersForm]);
+  function handleAddUser(userForm) {
+    setUsers([...users, userForm]);
   }
+
+  function editSelectedUser(id, updatedUser) {
+    setUsers(users.map(user => (user.id === id ? updatedUser : user)));
+  }
+
+  function handleUserUpdate(id, updatedUser) {
+    setUsers(
+      users.map((user) => {
+        if (user.id === id) {
+          return { ...updatedUser };
+        } else {
+          return user;
+        }
+      })
+    );
+  }
+  
+
+ 
 
   
 
@@ -35,7 +58,7 @@ function App() {
     <>
     <div className='main-section'>
     <UsersForm handleData={handleAddUser} />
-   <Users allUsers={users}/>
+   <Users allUsers={users} editSelectedUser={editSelectedUser} handleUserUpdate={handleUserUpdate} />
     </div>
   
     </>

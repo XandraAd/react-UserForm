@@ -18,5 +18,15 @@ body {
 
 .main-section {
   display: grid;
-  grid-template-rows: ,1fr;
+  grid-template-rows:2 ,1fr;
+}
+
+.btn {
+  
+  display: flex;
+  grid-template-columns: 2, 1fr;
+}
+
+button {
+  background-color: lemonchiffon;
 }
