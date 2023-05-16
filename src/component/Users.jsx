@@ -12,6 +12,7 @@ import EditUserForm from './EditUserForm';
 function Users(props) {
   const [open, setOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
+  
 
   const handleClose = () => setOpen(false);
   const handleOpen = (user) => {
@@ -21,6 +22,10 @@ function Users(props) {
 
   const handleUserUpdate = (updatedUser) => {
     props.editSelectedUser(updatedUser.id, updatedUser);
+  };
+
+  const handleRemove = (user) => {
+    props.deleteUser(user.id);
   };
   
 
@@ -55,24 +60,24 @@ function Users(props) {
 
       <div>
         <h2>List of Users</h2>
-        {props.allUsers.map((user, index) => (
-          <div key={index}>
+        {props.allUsers.map((user) => (
+          <div key={user.id}>
             <div>
-              <p>name: {user.name}</p>
+              <h3>name: {user.name}</h3>
               <p>email: {user.email}</p>
               <p>gen: {user.gen}</p>
-              <div>
+            <div>
               <Button
                   onClick={() => handleOpen(user)}
-                  variant="contained"
+                  variant="outlined"
                   endIcon={<EditIcon />}
                 >
                   Edit
-                </Button>
-                <Button onClick={handleOpen} variant="outlined" startIcon={<DeleteIcon />}>
-                  Delete
-                </Button>
-              </div>
+              </Button>
+              <Button onClick={() =>props.deleteUser(user.id)} 
+              color="secondary" variant="contained" startIcon={<DeleteIcon />}>Delete
+              </Button>
+            </div>
             </div>
             <hr />
           </div>

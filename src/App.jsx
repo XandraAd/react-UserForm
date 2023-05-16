@@ -30,11 +30,13 @@ function App() {
   ]);
 
   function handleAddUser(userForm) {
+    userForm.id=Math.random().toString()
     setUsers([...users, userForm]);
   }
 
   function editSelectedUser(id, updatedUser) {
-    setUsers(users.map(user => (user.id === id ? updatedUser : user)));
+    setUsers(users.map(
+      user => (user.id === id ? updatedUser : user)));
   }
 
   function handleUserUpdate(id, updatedUser) {
@@ -48,6 +50,12 @@ function App() {
       })
     );
   }
+
+  function handleRemove(id) {
+    setUsers(users.filter(
+      user =>( user.id !== id)));
+  }
+  
   
 
  
@@ -58,7 +66,8 @@ function App() {
     <>
     <div className='main-section'>
     <UsersForm handleData={handleAddUser} />
-   <Users allUsers={users} editSelectedUser={editSelectedUser} handleUserUpdate={handleUserUpdate} />
+    
+   <Users allUsers={users} editSelectedUser={editSelectedUser} handleUserUpdate={handleUserUpdate} deleteUser={handleRemove}/>
     </div>
   
     </>
